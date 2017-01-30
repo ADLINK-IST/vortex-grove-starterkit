@@ -1,0 +1,136 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"title": "Light Sensor",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Luminosity ",
+						"value": "datasources[\"LightSensor\"][\"rValue\"]",
+						"min_value": 0,
+						"max_value": "1000"
+					}
+				}
+			]
+		},
+		{
+			"title": "Rotary Angle Sensor",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "pointer",
+					"settings": {
+						"direction": "datasources[\"Rotary Angle Sensor\"][\"value\"]",
+						"value_text": "datasources[\"Rotary Angle Sensor\"][\"value\"]",
+						"units": "Degrees"
+					}
+				}
+			]
+		},
+		{
+			"title": "Light sensor LED",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "indicator",
+					"settings": {
+						"value": "if(datasources[\"LED\"][\"id\"] == 200)\n    return(datasources[\"LED\"][\"on\"])\n",
+						"on_text": "Blue LED ",
+						"off_text": "Blue LED "
+					}
+				}
+			]
+		},
+		{
+			"title": "Rotary Angle Sensor LED",
+			"width": 1,
+			"row": {
+				"3": 5
+			},
+			"col": {
+				"3": 3
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "indicator",
+					"settings": {
+						"value": "if(datasources[\"LED\"][\"id\"] == 100)\n    return(datasources[\"LED\"][\"on\"])",
+						"on_text": "Red LED ",
+						"off_text": "Red LED "
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "LightSensor",
+			"type": "Vortex",
+			"settings": {
+				"url": "ws://10.1.5.250:9000",
+				"topic": "VortexGrove_LightSensor",
+				"contentFilter": "NONE",
+				"timeFilter": "0",
+				"topicType": "VortexGrove.AnalogueSensor",
+				"bestEffort": false,
+				"transient": false,
+				"name": "LightSensor"
+			}
+		},
+		{
+			"name": "LED",
+			"type": "Vortex",
+			"settings": {
+				"url": "ws://10.1.5.250:9000",
+				"topic": "VortexGrove_LED",
+				"contentFilter": "NONE",
+				"timeFilter": "0",
+				"topicType": "VortexGrove.LED",
+				"bestEffort": false,
+				"transient": false,
+				"name": "LED"
+			}
+		},
+		{
+			"name": "Rotary Angle Sensor",
+			"type": "Vortex",
+			"settings": {
+				"url": "ws://10.1.5.250:9000",
+				"topic": "VortexGrove_RotarySensor",
+				"contentFilter": "NONE",
+				"timeFilter": "0",
+				"topicType": "VortexGrove.AnalogueSensor",
+				"bestEffort": false,
+				"transient": false
+			}
+		}
+	],
+	"columns": 3
+}
